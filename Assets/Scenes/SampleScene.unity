@@ -190,6 +190,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &673169346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5721407263127388025, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+  m_PrefabInstance: {fileID: 1416610827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,5 +624,37 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5721407264243296851, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1906160810}
+    - target: {fileID: 5721407264243296851, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Run
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721407264243296851, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PLCExecution, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+--- !u!1 &1906160804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5721407264243296812, guid: fa11f715d3c6db74b9a3e16fb0533813, type: 3}
+  m_PrefabInstance: {fileID: 1416610827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1906160810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906160804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9dec5efb5662c47bfdb63e172d2a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 673169346}
+  components: []
+  isRunning: 0
