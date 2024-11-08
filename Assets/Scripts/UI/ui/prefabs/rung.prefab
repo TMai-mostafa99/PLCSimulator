@@ -30,6 +30,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5488974850027462471}
   m_RootOrder: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4598d2ca072624c8e9aea1b0efa5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  length: 0
 --- !u!114 &5488974848603803256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +145,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5488974849102819455}
   m_RootOrder: 0
@@ -225,6 +228,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.43749994, y: 0.43749994, z: 0.43749994}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5488974848688501901}
   m_Father: {fileID: 5488974850027462471}
@@ -287,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -388,6 +393,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5488974848603803257}
   - {fileID: 5488974850730093829}
@@ -454,6 +460,7 @@ GameObject:
   - component: {fileID: 5488974850243894554}
   - component: {fileID: 12707117460634781}
   - component: {fileID: 3384804025654396098}
+  - component: {fileID: 7395015851918893352}
   m_Layer: 5
   m_Name: rung
   m_TagString: rung
@@ -471,6 +478,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5488974850027462471}
   m_Father: {fileID: 0}
@@ -580,6 +588,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b9a0169919ae545a127893817d1757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7395015851918893352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488974850243894552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a545d6a3c24f9a14db304825193396df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsPanel1: []
+  componentsPanel2: []
+  isParallel: 0
+  previousSignalOut1: 0
+  previousSignalOut2: 0
+  SignalInForRung: 0
 --- !u!1 &5488974850730093850
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +619,6 @@ GameObject:
   - component: {fileID: 5488974850730093825}
   - component: {fileID: 5488974850730093830}
   - component: {fileID: 5488974850730093831}
-  - component: {fileID: 5488974850730093828}
   m_Layer: 5
   m_Name: Panel out
   m_TagString: Panel out
@@ -611,6 +636,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5488974850027462471}
   m_RootOrder: 1
@@ -696,16 +722,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc44f3e539a270a4ea8f8959beb7f5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5488974850730093828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488974850730093850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b4d9c4686944e4d82730f8c42cd0a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  output: 0

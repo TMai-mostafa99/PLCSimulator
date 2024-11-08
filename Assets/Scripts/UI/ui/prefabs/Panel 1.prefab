@@ -1604,8 +1604,9 @@ GameObject:
   - component: {fileID: 759922551655320042}
   - component: {fileID: 759922551655320043}
   - component: {fileID: 7574765302958293400}
+  - component: {fileID: 5897099768116886693}
   m_Layer: 5
-  m_Name: XIO
+  m_Name: NC
   m_TagString: XIO
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1756,6 +1757,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rungrect: {fileID: 0}
+--- !u!114 &5897099768116886693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759922551655320041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63b73c2535b13b4a8c3077b1db6522b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RungSignal: 0
+  SignalIn: 0
+  SignalOut: 0
 --- !u!1 &759922551867148541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,8 +2882,9 @@ GameObject:
   - component: {fileID: 7271982653722100894}
   - component: {fileID: 4155336266957999587}
   - component: {fileID: 2066117404907534762}
+  - component: {fileID: 4528931926580218653}
   m_Layer: 5
-  m_Name: XIC
+  m_Name: NO
   m_TagString: XIC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3019,6 +3036,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rungrect: {fileID: 0}
+--- !u!114 &4528931926580218653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163620109799459668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811510a4dfc8be043803c4dc8d05966a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RungSignal: 0
+  SignalIn: 0
+  SignalOut: 0
 --- !u!1 &3230117558842857477
 GameObject:
   m_ObjectHideFlags: 0

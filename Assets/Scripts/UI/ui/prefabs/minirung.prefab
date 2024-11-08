@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018695723638822853}
   m_RootOrder: 1
@@ -106,6 +107,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018695723638822853}
   m_RootOrder: 0
@@ -232,6 +234,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018695723638822853}
   m_RootOrder: 2
@@ -310,6 +313,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018695723638822853}
   m_RootOrder: 4
@@ -436,6 +440,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018695723638822853}
   m_RootOrder: 3
@@ -495,9 +500,8 @@ GameObject:
   - component: {fileID: 3639036506446444815}
   - component: {fileID: 8436764882778112046}
   - component: {fileID: 7284763509675088904}
-  - component: {fileID: 6836393948655183591}
   - component: {fileID: 902840647646883073}
-  - component: {fileID: 4154534378116935098}
+  - component: {fileID: 446910064428559830}
   m_Layer: 5
   m_Name: minirung
   m_TagString: OR
@@ -515,6 +519,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2272110917412120382}
   - {fileID: 8857165925284481400}
@@ -579,21 +584,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6836393948655183591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8318559491692101922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4473a6f4d2df81a4daaf031fe6b67bd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testout: 0
-  minirung1out: 0
-  minirung2out: 0
 --- !u!114 &902840647646883073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +603,7 @@ MonoBehaviour:
   width: 76
   panel1T: {fileID: 2272110917412120382}
   panel2T: {fileID: 9107387621028365900}
---- !u!114 &4154534378116935098
+--- !u!114 &446910064428559830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -622,6 +612,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8318559491692101922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27784b4c109a1054eb4561ab28b9bc8f, type: 3}
+  m_Script: {fileID: 11500000, guid: a545d6a3c24f9a14db304825193396df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  componentsPanel1: []
+  componentsPanel2: []
+  isParallel: 1
+  previousSignalOut1: 0
+  previousSignalOut2: 0
+  SignalInForRung: 0

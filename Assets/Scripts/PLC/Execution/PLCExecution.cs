@@ -31,10 +31,7 @@ public class PLCExecution : MonoBehaviour
         foreach (Transform child in Parent.transform)
         {
             RungComponent comp = child.GetComponent<RungComponent>();
-            comp.FillRung();
-            comp.previousSignalOut = true;
-
-            //comp.SetInitialSignal(true);
+            comp.SetInitialSignal(true);
             MainRungs.Add(comp);
          
         }
@@ -53,19 +50,4 @@ public class PLCExecution : MonoBehaviour
             }
         }
     }
- 
-    //private void Execute()
-    //{
-    //    if (isRunning && components.Length > 0)
-    //    {
-    //        for (int i = 0; i < components.Length; i++)
-    //        {
-    //            if (i == 0) components[0].RungSignal = true;
-    //            else
-    //            {
-    //                components[i].RungSignal = components[i - 1].SignalOut;//this is the previous signal part
-    //            }
-    //        }
-    //    }
-    //}
 }

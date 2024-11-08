@@ -1,57 +1,94 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RungComponent : SimulationComponent
 {
-    public List<SimulationComponent> components;
+    public List<SimulationComponent> componentsPanel1;
+    public List<SimulationComponent> componentsPanel2;
     public bool isParallel; // set from prefab
     //parallel means it is a mini rung
-    public bool previousSignalOut;
-
+    public bool SignalInForRung;
+    [Button]
     public void FillRung()
     {
-        components.Clear();
-        foreach (Transform child in transform)
+        componentsPanel1.Clear();
+        componentsPanel2.Clear();
+        if (isParallel)
         {
-            SimulationComponent component = child.GetComponent<SimulationComponent>();
-            components.Add(component);
+            TraverseChildren(transform, (panel) =>
+           {
+               if (panel.GetComponent<miniparallel_rung>())
+               {
+                   TraverseChildren(panel, (child) =>
+                    {
+                        SimulationComponent component = child.GetComponent<SimulationComponent>();
+                        componentsPanel1.Add(component);
+                    });
+               }
+               if (panel.GetComponent<miniparallel_rung2>())
+               {
+                   TraverseChildren(panel, (child) =>
+                   {
+                       SimulationComponent component = child.GetComponent<SimulationComponent>();
+                       componentsPanel2.Add(component);
+                   });
+               }
+
+
+           });
+        }
+        else
+        {
+            TraverseChildren(transform.GetChild(0).GetChild(0), (child) =>
+            {
+               SimulationComponent component = child.GetComponent<SimulationComponent>();
+               componentsPanel1.Add(component);
+            });
         }
     }
     public void SetInitialSignal(bool initialSignal)
     {
-        if(components.Count > 0 && components[0] is PLCComponent x)
-        {
-            x.SignalIn = initialSignal;
-        }
+        SignalInForRung = initialSignal;
     }
-
-
 
     public bool ExecuteRung()
     {
+        FillRung();
+        if (isParallel)
+            return ExecutePanel(componentsPanel1) || ExecutePanel(componentsPanel2);
+        else
+            return ExecutePanel(componentsPanel1);
+    }
+
+    public bool ExecutePanel(List<SimulationComponent> components)
+    {
+        bool signalOut = SignalInForRung;
         foreach (SimulationComponent comp in components)
         {
             if (comp is PLCComponent x)
             {
-                x.RungSignal = previousSignalOut;
-                previousSignalOut = x.SignalOut;
+                x.RungSignal = signalOut;
+                signalOut = x.SignalOut;
             }
             else if (comp is RungComponent r)
             {
-                r.SetInitialSignal(previousSignalOut);
-                previousSignalOut = r.ExecuteRung();
+                r.SetInitialSignal(signalOut);
+                signalOut = r.ExecuteRung();
+
             }
-
-            //if (isParallel && previousResult) return true;
-
-            //if (!isParallel && !previousResult) return false;
         }
-        return previousSignalOut;
+        return signalOut;
       
     }
-    //private void Update()
-    //{
-       
-    //}
+    //---------------------- Helper ------------------------//
+    private void TraverseChildren(Transform transformParent, UnityAction<Transform> action)
+    {
+        foreach (Transform child in transformParent)
+        {
+            action.Invoke(child);
+        }
+    }
 }
