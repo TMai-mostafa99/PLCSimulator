@@ -9,7 +9,7 @@ public class loadio : MonoBehaviour
     void Start()
     {
 
-        SceneManager.LoadScene("IO_experiment", LoadSceneMode.Additive);
+       // SceneManager.LoadScene("IO_experiment", LoadSceneMode.Additive);
     }
 
 }
