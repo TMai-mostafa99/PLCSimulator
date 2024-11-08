@@ -10,6 +10,7 @@ public class deleteinstruction : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("oher: " + other.name);
         Destroy(other.gameObject);
         
     }

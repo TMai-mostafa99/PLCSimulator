@@ -15,8 +15,8 @@ public class parallel_instruction : MonoBehaviour, IBeginDragHandler, IDragHandl
 	{
 
 
-		parentToReturnTo = this.transform.parent;
-		this.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+	//	parentToReturnTo = this.transform.parent;
+	//	this.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
 
 		GetComponent<CanvasGroup>().blocksRaycasts = false;
 	}
@@ -31,9 +31,12 @@ public class parallel_instruction : MonoBehaviour, IBeginDragHandler, IDragHandl
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		this.transform.SetParent(parentToReturnTo);
+	//	this.transform.SetParent(parentToReturnTo);
 
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+		GameObject rung =  Instantiate(this.gameObject, parentToReturnTo);
+		rung.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
 
 		Destroy(this.gameObject);
 		

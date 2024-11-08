@@ -12,6 +12,11 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform org = null;
     GameObject placeholder = null;
 
+    private Transform ParentPos;
+    private void Start()
+    {
+        ParentPos = transform.parent;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
 
@@ -19,7 +24,7 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         placeholder = new GameObject();
         
         placeholder.transform.SetParent(this.transform.parent);
-
+        placeholder.name = "PLACEHOLDER";
        
         LayoutElement le = placeholder.AddComponent<LayoutElement>();
         le.preferredWidth = 30;
@@ -79,10 +84,26 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (placeholderParent == GameObject.FindGameObjectWithTag("Panel out").transform )
         { this.transform.SetParent(org);  }
-
+        //else
+        //{
+        //    transform.SetParent(ParentPos);
+        //    transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        //}
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-                Destroy(placeholder);
+
+        
+        if(placeholder.transform.parent == ParentPos)
+        {
+            GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
+        else
+        {
+            GameObject newplaceholder = Instantiate(gameObject, ParentPos.transform);
+            newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
+        }
+        Destroy(placeholder);
 
         Destroy(GameObject.Find("Canvas/menu/Basic/Panel 1(Clone)"));
         Destroy(GameObject.Find("Canvas/menu/Timers & Counters/Panel 2(Clone)"));
