@@ -9,4 +9,12 @@ public class NC_contact : Contact
     {
         SignalOut = RungSignal && !SignalIn;
     }
+    private void OnMouseDown()
+    {
+        if (addedToRung)
+        {
+            //TODO: Open Var Panel
+            assignVariable.instance.OpenPanel.Invoke(this);
+        }
+    }
 }

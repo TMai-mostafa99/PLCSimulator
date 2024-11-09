@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -13,6 +14,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     GameObject placeholder = null;
 
     private Transform ParentPos;
+
+    public UnityAction Dropped;
     private void Start()
     {
         ParentPos = transform.parent;
@@ -84,11 +87,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (placeholderParent == GameObject.FindGameObjectWithTag("Panel out").transform )
         { this.transform.SetParent(org);  }
-        //else
-        //{
-        //    transform.SetParent(ParentPos);
-        //    transform.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        //}
+
+
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
@@ -102,6 +102,9 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             GameObject newplaceholder = Instantiate(gameObject, ParentPos.transform);
             newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
+
+            //
+            Dropped?.Invoke();
         }
         Destroy(placeholder);
 

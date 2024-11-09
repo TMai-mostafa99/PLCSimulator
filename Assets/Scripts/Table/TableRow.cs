@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TableRow : MonoBehaviour
 {
-    public string Name;
-    public 
-    // Start is called before the first frame update
-    void Start()
+    public TMP_Text Name;
+    public string VarName;
+    public VarTypes type;
+    public Button Delete;
+
+    private void Start()
     {
-        
+        Delete.onClick.AddListener(DeleteRow);
+    }
+    protected virtual void Update()
+    {
+      
+        Name.text = VarName;
     }
 
-    // Update is called once per frame
-    void Update()
+    public  virtual void DeleteRow() 
     {
-        
+        VarTablemanager.instance.Rows.Remove(this);
+        Destroy(gameObject);
     }
 }
