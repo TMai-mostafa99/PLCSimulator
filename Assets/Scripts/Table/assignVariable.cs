@@ -62,13 +62,6 @@ public class assignVariable : MonoBehaviour //also singleton
 
         Type type = script.GetType();
         fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
-
-        //foreach (FieldInfo field in fields)
-        //{
-           
-
-
-        //}
         AssignRows(script);
     }
 
@@ -88,6 +81,7 @@ public class assignVariable : MonoBehaviour //also singleton
                 row.GetComponent<AssignRow>().VarName.text = field.Name;
                 List<TMP_Dropdown.OptionData> options = GetOptions(ParseVarType(field.GetValue(script)));
                 row.GetComponent<AssignRow>().dropDown.AddOptions(options);
+                row.GetComponent<AssignRow>().component = script as PLCComponent;
             }
            
 
