@@ -13,12 +13,13 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform org = null;
     GameObject placeholder = null;
 
-    private Transform ParentPos;
+ //   private Transform ParentPos;
 
     public UnityAction Dropped;
+    private Transform MenuTransform;
     private void Start()
     {
-        ParentPos = transform.parent;
+        MenuTransform = transform.parent;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -93,19 +94,33 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         
-        if(placeholder.transform.parent == ParentPos)
-        {
-            GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        }
+        if(placeholder.transform.parent.tag =="Menu") GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         else
         {
-            GameObject newplaceholder = Instantiate(gameObject, ParentPos.transform);
-            newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-            newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
-
-            //
-            Dropped?.Invoke();
+            if(MenuTransform.childCount == 0)
+            {
+                GameObject newplaceholder = Instantiate(gameObject, MenuTransform.transform);
+                newplaceholder.name = gameObject.name;  
+                newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
+            }
+          
         }
+        //if(placeholder.transform.parent == ParentPos)
+        //{
+        //    GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        //}
+        //else
+        //{
+
+        //    GameObject newplaceholder = Instantiate(gameObject, ParentPos.transform);
+        //    newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        //    newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
+
+        //    //
+        //    //ParentPos = placeholder.transform.parent;
+        //    Dropped?.Invoke();
+        //}
         Destroy(placeholder);
 
         Destroy(GameObject.Find("Canvas/menu/Basic/Panel 1(Clone)"));
