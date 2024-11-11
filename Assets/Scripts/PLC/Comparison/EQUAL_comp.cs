@@ -7,6 +7,6 @@ public class EQUAL_comp : Compare
     // Update is called once per frame
     void Update()
     {
-        SignalOut = NUM1 == NUM2 ? true : false;
+        SignalOut.Signal = NUM1 == NUM2 ? true : false;
     }
 }

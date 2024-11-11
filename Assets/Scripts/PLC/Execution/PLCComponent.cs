@@ -6,21 +6,38 @@ using UnityEngine.Events;
 
 public class PLCComponent : SimulationComponent
 {
-    public bool RungSignal;
-    public bool SignalIn;
-    public bool SignalOut;
+    //public bool RungSignal;
+    //public bool SignalIn;
+    //public bool SignalOut;
+    public SignalData RungSignal;
+    public SignalData SignalIn;
+    public SignalData SignalOut;
 
     protected bool addedToRung;
     private draggable draggable;
 
     public List<SignalData> Data;
 
+    private void Awake()
+    {
+        Data.Clear();
+        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0);
+        if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
+        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0);
+        if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
+        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0);
+        if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
+    }
     private void OnValidate()
     {
-        SignalData RungSignalT = new SignalData();
-        RungSignalT.SignalName = "RungSignal";
-        RungSignalT.Type = VarTypes.BOOL;
-        Data.Add(RungSignalT);
+        Data.Clear();
+        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0);
+        if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
+        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0);
+        if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
+        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0);
+        if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
+        // Data.Clear();
     }
     private void Start()
     {
@@ -34,35 +51,11 @@ public class PLCComponent : SimulationComponent
         addedToRung = true;
     }
 
-    public void AssignPLCcomponent(MonoBehaviour plccomp)
+    public void AssignPLCcomponent()
     {
         if(addedToRung)
-        assignVariable.instance.OpenPanel.Invoke(plccomp);
+            assignVariable.instance.OpenPanel.Invoke(this);
     }
-
-    public void SetSignalIn(bool signal)
-    {
-        SignalIn = signal;
-    }
-    private Action<bool> currentSubscription;  // Stores current subscription for dynamic unsubscription
-
-    // Method to dynamically subscribe to any boolean change event
-    //public void SubscribeToBoolChange(Action<bool> boolChangeEvent)
-    //{
-    //    // If already subscribed to the same event, do nothing
-    //    if (currentSubscription == boolChangeEvent)
-    //        return;
-
-    //    // Unsubscribe from the previous event if it's assigned to a different event
-    //    if (currentSubscription != null)
-    //    {
-    //        currentSubscription -= OnBoolChanged;
-    //    }
-
-    //    // Update the subscription to the new event
-    //    currentSubscription = boolChangeEvent;
-    //    currentSubscription += OnBoolChanged;
-    //}
 
     [Serializable]
     public class SignalData
@@ -71,7 +64,55 @@ public class PLCComponent : SimulationComponent
         public string SignalName;
         public bool Signal;
         public int Number;
-        public UnityAction<bool> currentSubscriptionSignal;
-        public UnityAction<bool> currentSubscriptionNumber;
+        private IBoolSubscribable boolSubscribe;
+        private INumberSubscribable numberSubscribe;
+        public  SignalData(VarTypes type, string signalName , bool signal , int num)
+        {
+            Type = type;
+            SignalName = signalName;
+            Signal = signal;
+            Number = num;
+        }
+ 
+        public void SubscribeToBoolChange(IBoolSubscribable source)
+        {
+               if(boolSubscribe != null)
+                {
+                boolSubscribe.UnSubscribe(UpdateSignal);
+                }
+
+            boolSubscribe = source;
+            boolSubscribe.Subscribe(UpdateSignal);
+
+            Signal = boolSubscribe.BoolValue;
+
+        }
+
+        // Method that will handle the changes from the subscribed events
+        private void UpdateSignal(bool newValue)
+        {
+            Debug.Log("A1 updated to: " + newValue);
+            Signal = newValue;
+         
+        }
+        //TODO add one for int
+        public void SubscribeToNumberChange(INumberSubscribable source)
+        {
+            if (numberSubscribe != null)
+            {
+                numberSubscribe.UnSubscribe(UpdateNumber);
+            }
+
+            numberSubscribe = source;
+            numberSubscribe.Subscribe(UpdateNumber);
+
+            Number = numberSubscribe.numberValue;
+
+        }
+        private void UpdateNumber(int newValue)
+        {
+            Number = newValue;
+        }
+
     }
 }

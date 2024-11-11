@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class assignVariable : MonoBehaviour //also singleton
 {
-    public UnityAction<MonoBehaviour> OpenPanel;
+    public UnityAction<PLCComponent> OpenPanel;
   //  public PLCComponent component;
     public FieldInfo[] fields;
     public Transform VarParent;
@@ -33,14 +33,34 @@ public class assignVariable : MonoBehaviour //also singleton
             Destroy(child.gameObject);
         }
     }
-    public void OpenVarAssignPanel(MonoBehaviour plc)
+    public void OpenVarAssignPanel(PLCComponent plc)
     {
         PopUpPanel.SetActive(true);
        // if(fields.Length >0 )   Array.Clear(fields, 0, fields.Length);
         DestroyAllChildren();
         //Destroy all chidren of parent;
-        Debug.Log("plc name: " + plc.name);
-        GetPublicVariables(plc);
+       // Debug.Log("plc name: " + plc.name);
+        //GetPublicVariables(plc);
+        GetPLCdata(plc);
+    }
+    public void GetPLCdata(PLCComponent plc)
+    {
+        foreach(PLCComponent.SignalData signal in plc.Data)
+        {
+          //  Debug.Log("NAME SIGNAL : " + signal.SignalName);
+            if (signal.SignalName == "SignalOut" || signal.SignalName == "RungSignal")
+            { //DONT
+            }
+            else
+            {
+                GameObject row = Instantiate(AssignRowgGo, VarParent);
+                row.GetComponent<AssignRow>().VarName.text = signal.SignalName;
+
+                List<TMP_Dropdown.OptionData> options = GetOptions(signal.Type);
+                row.GetComponent<AssignRow>().dropDown.AddOptions(options);
+                row.GetComponent<AssignRow>().Signal = signal;
+            }
+        }
     }
     public void CloseVarAssignPanel()
     {
@@ -51,64 +71,65 @@ public class assignVariable : MonoBehaviour //also singleton
     {
         
     }
-    [Button]
-    public void GetPublicVariables(MonoBehaviour script)
-    {
-        if (script == null)
-        {
-            Debug.LogWarning("No target script assigned.");
-            return;
-        }
+    // [Button]
+    //public void GetPublicVariables(MonoBehaviour script)
+    //{
+    //    if (script == null)
+    //    {
+    //        Debug.LogWarning("No target script assigned.");
+    //        return;
+    //    }
 
-        Type type = script.GetType();
-        fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        AssignRows(script);
-    }
+    //    Type type = script.GetType();
+    //    fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+    //    AssignRows(script);
+    //}
 
-    public void AssignRows(MonoBehaviour script)
-    {
-        foreach (FieldInfo field in fields)
-        {
-            object value = field.GetValue(script);
-            Debug.Log($"Field: {field.Name}, Value: {value}");
+    //public void AssignRows(MonoBehaviour script)
+    //{
+    //    foreach (FieldInfo field in fields)
+    //    {
+    //        object value = field.GetValue(script);
+    //        Debug.Log($"Field: {field.Name}, Value: {value}");
 
-            if (field.Name == "SignalOut" || field.Name == "RungSignal")
-            { //DONT
-            }
-            else
-            {
-                GameObject row = Instantiate(AssignRowgGo, VarParent);
-                row.GetComponent<AssignRow>().VarName.text = field.Name;
-                List<TMP_Dropdown.OptionData> options = GetOptions(ParseVarType(field.GetValue(script)));
-                row.GetComponent<AssignRow>().dropDown.AddOptions(options);
-                row.GetComponent<AssignRow>().component = script as PLCComponent;
-            }
-           
+    //        if (field.Name == "SignalOut" || field.Name == "RungSignal")
+    //        { //DONT
+    //        }
+    //        else
+    //        {
+    //            GameObject row = Instantiate(AssignRowgGo, VarParent);
+    //            row.GetComponent<AssignRow>().VarName.text = field.Name;
+    //            List<TMP_Dropdown.OptionData> options = GetOptions(ParseVarType(field.GetValue(script)));
+    //            row.GetComponent<AssignRow>().dropDown.AddOptions(options);
+    //            row.GetComponent<AssignRow>().component = script as PLCComponent;
+    //        }
 
-        }
-    }
-    private VarTypes ParseVarType(object obj)
-    {
-        if(obj is bool)
-        {
-            return VarTypes.BOOL;
-        }
-        else if (obj is int)
-        {
-            return VarTypes.NUMBER;
-        }
-        else
-        {
-            return VarTypes.COUNTER;
-        }
-    }
+
+    //    }
+    //}
+    //private VarTypes ParseVarType(object obj)
+    //{
+    //    if(obj is bool)
+    //    {
+    //        return VarTypes.BOOL;
+    //    }
+    //    else if (obj is int)
+    //    {
+    //        return VarTypes.NUMBER;
+    //    }
+    //    else
+    //    {
+    //        return VarTypes.COUNTER;
+    //    }
+    //}
     private List<TMP_Dropdown.OptionData> GetOptions(VarTypes type)
     {
+       // Debug.Log("type: " + type);
         List<TMP_Dropdown.OptionData> optionsList = new List<TMP_Dropdown.OptionData>();
         foreach (TableRow row in VarTablemanager.instance.Rows)
         {
 
-            if(row.type == type)
+            if (row.type == type)
             {
                 TMP_Dropdown.OptionData item = new TMP_Dropdown.OptionData();
                 item.text = row.VarName;

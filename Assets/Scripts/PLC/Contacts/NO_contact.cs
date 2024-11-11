@@ -8,7 +8,7 @@ public class NO_contact : Contact
     // Update is called once per frame
     void Update()
     {
-        SignalOut = RungSignal && SignalIn ;
+        SignalOut.Signal = RungSignal.Signal && SignalIn.Signal ;
     }
 
 

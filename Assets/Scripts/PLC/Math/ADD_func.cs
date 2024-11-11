@@ -8,6 +8,6 @@ public class ADD_func : MathFunc
     void Update()
     {
         if (EN && !previousSignal) OUT = Num1 + Num2;
-        previousSignal = SignalIn;
+        previousSignal = SignalIn.Signal;
     }
 }

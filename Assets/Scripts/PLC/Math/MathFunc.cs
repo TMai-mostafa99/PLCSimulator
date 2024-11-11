@@ -11,7 +11,7 @@ public class MathFunc : PLCComponent
     // Update is called once per frame
     void Update()
     {
-        EN = SignalIn = RungSignal;
-        ENO = SignalOut = EN;
+        EN = SignalIn.Signal = RungSignal.Signal;
+        ENO = SignalOut.Signal = EN;
     }
 }

@@ -14,7 +14,7 @@ public class Basic_Coil : Coil
     void Update()
     {
         SignalOut = RungSignal;
-        if (SignalOut)
+        if (SignalOut.Signal)
         {
             Debug.Log("Signal out is true");
         }

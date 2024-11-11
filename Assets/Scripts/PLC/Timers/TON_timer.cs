@@ -12,11 +12,11 @@ public class TON_timer : Timer
 
             if(ET >= PT)
             {
-                Q = SignalOut = true;
+                Q = SignalOut.Signal = true;
             }
             else
             {
-                Q = SignalOut = false;
+                Q = SignalOut.Signal = false;
             }
         }
     }

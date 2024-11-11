@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-public class NumberRow : TableRow
+public class NumberRow : TableRow,INumberSubscribable
 {
     public TMP_InputField input;
    
     private int _value;
-    public UnityAction<int> OnValueChanged;
+    public Action<int> OnValueChanged;
     public int Value
     {
         get { return _value; }
@@ -18,6 +19,9 @@ public class NumberRow : TableRow
             OnValueChanged?.Invoke(_value);
         }
     }
+
+    public int numberValue => Value;
+
     protected override void Update()
     {
         base.Update();
@@ -26,4 +30,13 @@ public class NumberRow : TableRow
             _value = int.Parse(input.text);
     }
 
+    public void Subscribe(Action<int> callback)
+    {
+        OnValueChanged += callback;
+    }
+
+    public void UnSubscribe(Action<int> callback)
+    {
+        OnValueChanged -= callback;
+    }
 }

@@ -70,8 +70,8 @@ public class RungComponent : SimulationComponent
         {
             if (comp is PLCComponent x)
             {
-                x.RungSignal = signalOut;
-                signalOut = x.SignalOut;
+                x.RungSignal.Signal = signalOut;
+                signalOut = x.SignalOut.Signal;
             }
             else if (comp is RungComponent r)
             {

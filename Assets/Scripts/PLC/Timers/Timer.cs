@@ -13,7 +13,7 @@ public class Timer : PLCComponent
     // Update is called once per frame
     void Update()
     {
-        IN = SignalIn = RungSignal;
+        IN = SignalIn.Signal = RungSignal.Signal;
         if (R) ET = 0; //reset bit
     }
 }

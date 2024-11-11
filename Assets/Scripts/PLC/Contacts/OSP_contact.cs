@@ -14,8 +14,8 @@ public class OSP_contact : Contact
 
         //else
         //    // No rising edge, ensure output is false
-        SignalOut = SignalIn && !previousSignalIn ? RungSignal : false;
+        SignalOut.Signal = SignalIn.Signal && !previousSignalIn ? RungSignal.Signal : false;
         // Update previous state for next frame
-        previousSignalIn = SignalIn;
+        previousSignalIn = SignalIn.Signal;
     }
 }
