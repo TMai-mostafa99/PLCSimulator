@@ -13,7 +13,7 @@ public class TableRow : MonoBehaviour
 
     private void Start()
     {
-        Delete.onClick.AddListener(DeleteRow);
+      if(Delete)  Delete.onClick.AddListener(DeleteRow);
     }
     protected virtual void Update()
     {

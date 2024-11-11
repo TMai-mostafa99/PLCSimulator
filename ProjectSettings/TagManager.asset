@@ -3,7 +3,37 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Timers & Counters
+  - Basic
+  - InputField
+  - Rcoil
+  - Scoil
+  - panel
+  - Coil
+  - Compare
+  - RungContainer
+  - Math
+  - Canvas
+  - rung
+  - TC
+  - :<=
+  - :>=
+  - :<<
+  - :>>
+  - :==
+  - di
+  - +
+  - '-'
+  - '*'
+  - XIO
+  - XIC
+  - OOR
+  - Input_Panel
+  - Panel out
+  - OR
+  - parallel_instr.
+  - Menu
   layers:
   - Default
   - TransparentFX

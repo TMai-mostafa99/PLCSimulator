@@ -11,15 +11,15 @@ public class CTU_counter : Counter
     // Update is called once per frame
     void Update()
     {
-        CU = SignalIn.Signal = RungSignal.Signal;
+        CU.Signal = SignalIn.Signal = RungSignal.Signal;
 
-        if (CV == PV) Q = SignalOut.Signal = true;
-        else Q = SignalOut.Signal = false;
+        if (CV.Number == PV.Number) Q.Signal = SignalOut.Signal = true;
+        else Q.Signal = SignalOut.Signal = false;
 
-        if (R) CV = 0;
+        if (R.Signal) CV.Number = 0;
 
         //count on rising edge
-        if (CU && !previousSignalIn) CV++;
+        if (CU.Signal && !previousSignalIn) CV.Number++;
 
         previousSignalIn = SignalIn.Signal;
 

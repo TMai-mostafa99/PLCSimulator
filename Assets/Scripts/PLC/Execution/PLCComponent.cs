@@ -18,7 +18,7 @@ public class PLCComponent : SimulationComponent
 
     public List<SignalData> Data;
 
-    private void Awake()
+    protected void Awake()
     {
         Data.Clear();
         RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0);

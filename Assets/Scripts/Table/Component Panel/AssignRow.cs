@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.Events;
 public class AssignRow : MonoBehaviour
 {
+    public PLCComponent component;
     public PLCComponent.SignalData Signal;
     public TMP_Text VarName;
     public TMP_Dropdown dropDown;
@@ -38,6 +39,15 @@ public class AssignRow : MonoBehaviour
                 NumberRow rowNum = (NumberRow)VarTablemanager.instance.Rows.Find(row => row.VarName == dropDown.options[indx].text);
                 Signal.SubscribeToNumberChange(rowNum);
                 //dropDown.value = indx;
+                break;
+            case VarTypes.COUNTER:
+                CounterRow counterRow = (CounterRow)VarTablemanager.instance.Rows.Find(row => row.VarName == dropDown.options[indx].text);
+                Counter CounterComponent = (Counter) component;
+                CounterComponent.PV.SubscribeToNumberChange(counterRow.PV);
+                CounterComponent.CV.SubscribeToNumberChange(counterRow.CV);
+                CounterComponent.CU.SubscribeToBoolChange(counterRow.CU);
+                CounterComponent.R.SubscribeToBoolChange(counterRow.R);
+                CounterComponent.Q.SubscribeToBoolChange(counterRow.Q);
                 break;
         }
      

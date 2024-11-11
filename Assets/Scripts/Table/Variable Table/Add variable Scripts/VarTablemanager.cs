@@ -13,7 +13,7 @@ public class VarTablemanager : MonoBehaviour //Mark as singleton
     public Transform TableParent;
     public GameObject BoolRow;
     public GameObject NumberRow;
-
+    public GameObject CounterRow;
     public static VarTablemanager instance;
 
     private void Awake()
@@ -44,14 +44,44 @@ public class VarTablemanager : MonoBehaviour //Mark as singleton
                 Rows.Add(BoolRowEle);
                 break;
 
-            case 1:
+            case 1://Number
                 GameObject NumberRowObj = Instantiate(NumberRow, TableParent);
                 NumberRow NumberRowEle = NumberRowObj.GetComponent<NumberRow>();
                 NumberRowEle.VarName = Name.text;
                 Rows.Add(NumberRowEle);
                 break;
+
+            case 2: //Counter
+                GameObject CounterRowParent = Instantiate(CounterRow, TableParent); //counter row
+                CounterRow CounterRowEle = CounterRowParent.transform.GetChild(0).GetComponent<CounterRow>();
+                ReparentChildrenAndDeleteParent(CounterRowParent.transform);
+                CounterRowEle.VarName = Name.text;
+                Rows.Add(CounterRowEle);
+                break;
         }
     }
+    public void ReparentChildrenAndDeleteParent(Transform OldParent)
+    {
+        
+        // Check if the object has a parent
+        if (OldParent.parent == null)
+        {
+            Debug.LogWarning("This object has no parent, so its children cannot be made siblings.");
+            return;
+        }
 
- 
+        // Get the parent of the original parent (the grandparent)
+        Transform grandParent = OldParent.parent;
+
+        // Reparent each child to the grandparent
+        while (OldParent.childCount > 0)
+        {
+            Transform child = OldParent.GetChild(0);
+            child.SetParent(grandParent, true); // 'true' keeps the child's world position
+        }
+
+        // Destroy the original parent (this GameObject)
+        Destroy(OldParent.gameObject);
+    }
+
 }
