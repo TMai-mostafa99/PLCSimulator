@@ -4,19 +4,20 @@ public class TON_timer : Timer
 {
 
     // Update is called once per frame
-    void Update() // TODO: MUST TEST PROBABLY WRONG
+    protected override void Update()
     {
+        base.Update();
         if (IN) // timer started
         {
             ET += (int)Time.deltaTime;
 
             if(ET >= PT)
             {
-                Q = SignalOut.Signal = true;
+                Q = SignalOut = true;
             }
             else
             {
-                Q = SignalOut.Signal = false;
+                Q = SignalOut = false;
             }
         }
     }

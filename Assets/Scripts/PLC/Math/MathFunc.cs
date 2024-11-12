@@ -28,7 +28,7 @@ public class MathFunc : PLCComponent
     protected override void Update()
     {
         base.Update();
-        EN.Signal = SignalIn.Signal = RungSignal.Signal;
-        ENO.Signal = SignalOut.Signal = EN.Signal;
+        EN.Signal = SignalIn = RungSignal;
+        ENO.Signal = SignalOut = EN.Signal;
     }
 }

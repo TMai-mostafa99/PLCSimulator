@@ -9,6 +9,6 @@ public class ADD_func : MathFunc
     {
         base.Update();
         if (EN.Signal && !previousSignal) OUT.Number = Num1.Number + Num2.Number;
-        previousSignal = SignalIn.Signal;
+        previousSignal = SignalIn;
     }
 }

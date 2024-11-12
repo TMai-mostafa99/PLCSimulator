@@ -11,9 +11,10 @@ public class Timer : PLCComponent
     public int ET;
     public bool R;
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        IN = SignalIn.Signal = RungSignal.Signal;
+        base.Update();
+        IN = SignalIn = RungSignal;
         if (R) ET = 0; //reset bit
     }
 }

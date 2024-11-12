@@ -10,9 +10,9 @@ public class PLCComponent : SimulationComponent
     //public bool RungSignal;
     //public bool SignalIn;
     //public bool SignalOut;
-    public SignalData RungSignal;
-    public SignalData SignalIn;
-    public SignalData SignalOut;
+    public bool RungSignal;
+    public bool SignalIn;
+    public bool SignalOut;
 
     protected bool addedToRung;
     private draggable draggable;
@@ -23,22 +23,22 @@ public class PLCComponent : SimulationComponent
     protected void Awake()
     {
         Data.Clear();
-        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0 , false);
-        if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
-        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0 , true);
-        if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
-        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
-        if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
+        //RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0 , false);
+        //if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
+        //SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0 , true);
+        //if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
+        //SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
+        //if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
     }
     private void OnValidate()
     {
-        Data.Clear();
-        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0, false);
-        if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
-        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0, true);
-        if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
-        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
-        if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
+        //Data.Clear();
+        //RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0, false);
+        //if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
+        //SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0, true);
+        //if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
+        //SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
+        //if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
         // Data.Clear();
     }
     protected virtual void Start()
@@ -52,7 +52,7 @@ public class PLCComponent : SimulationComponent
     {
         if (graphic)
         {
-            if (SignalOut.Signal) graphic.color = Color.green;
+            if (SignalOut) graphic.color = Color.green;
             else graphic.color = Color.black;
         }
        

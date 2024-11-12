@@ -7,11 +7,13 @@ public class OSN_contact : Contact
 {
     private bool previousSignalIn;
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+     
         // Check if there's a falling edge (true -> false transition)
-        SignalOut.Signal = !SignalIn.Signal && previousSignalIn ? RungSignal.Signal : false;
+        SignalOut = !SignalIn && previousSignalIn ? RungSignal : false;
         // Update previous state for next frame
-        previousSignalIn = SignalIn.Signal;
+        previousSignalIn = SignalIn;
     }
 }

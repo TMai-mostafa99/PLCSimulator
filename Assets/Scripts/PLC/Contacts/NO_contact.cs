@@ -9,7 +9,8 @@ public class NO_contact : Contact
     protected override void Update()
     {
         base.Update();
-        SignalOut.Signal = RungSignal.Signal && SignalIn.Signal ;
+    
+        SignalOut = RungSignal && SignalIn ;
     }
 
 

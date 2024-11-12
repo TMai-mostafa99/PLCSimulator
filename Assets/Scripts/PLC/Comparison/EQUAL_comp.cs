@@ -5,8 +5,9 @@ using UnityEngine;
 public class EQUAL_comp : Compare
 {
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        SignalOut.Signal = NUM1 == NUM2 ? true : false;
+        base.Update();
+        SignalOut = NUM1 == NUM2 ? true : false;
     }
 }
