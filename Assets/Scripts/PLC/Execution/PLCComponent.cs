@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PLCComponent : SimulationComponent
 {
@@ -18,33 +19,43 @@ public class PLCComponent : SimulationComponent
 
     public List<SignalData> Data;
 
+    public Image graphic;
     protected void Awake()
     {
         Data.Clear();
-        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0);
+        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0 , false);
         if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
-        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0);
+        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0 , true);
         if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
-        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0);
+        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
         if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
     }
     private void OnValidate()
     {
         Data.Clear();
-        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0);
+        RungSignal = new SignalData(VarTypes.BOOL, "RungSignal", false, 0, false);
         if (!Data.Contains(RungSignal)) Data.Add(RungSignal);
-        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0);
+        SignalIn = new SignalData(VarTypes.BOOL, "SignalIn", false, 0, true);
         if (!Data.Contains(SignalIn)) Data.Add(SignalIn);
-        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0);
+        SignalOut = new SignalData(VarTypes.BOOL, "SignalOut", false, 0 , false);
         if (!Data.Contains(SignalOut)) Data.Add(SignalOut);
         // Data.Clear();
     }
-    private void Start()
+    protected virtual void Start()
     {
         Debug.Log("HERE");
         draggable = GetComponent<draggable>();
         Debug.Log("DRAGABALE: " + draggable);
         draggable.Dropped += DroppedToRung;
+    }
+    protected virtual void Update()
+    {
+        if (graphic)
+        {
+            if (SignalOut.Signal) graphic.color = Color.green;
+            else graphic.color = Color.black;
+        }
+       
     }
     private void DroppedToRung()
     {
@@ -53,8 +64,12 @@ public class PLCComponent : SimulationComponent
 
     public void AssignPLCcomponent()
     {
-        if(addedToRung)
+        if (addedToRung)
+        {
+            Debug.Log("HEERE");
             assignVariable.instance.OpenPanel.Invoke(this);
+        }
+           
     }
 
     [Serializable]
@@ -64,55 +79,86 @@ public class PLCComponent : SimulationComponent
         public string SignalName;
         public bool Signal;
         public int Number;
-        private IBoolSubscribable boolSubscribe;
-        private INumberSubscribable numberSubscribe;
-        public  SignalData(VarTypes type, string signalName , bool signal , int num)
+        public bool IsWrite;
+        public TableRow assignedrow;
+        //private IBoolSubscribable boolSubscribe;
+        //private INumberSubscribable numberSubscribe;
+        public  SignalData(VarTypes type, string signalName , bool signal , int num , bool isWrite)
         {
             Type = type;
             SignalName = signalName;
             Signal = signal;
             Number = num;
+            IsWrite = isWrite;
         }
  
-        public void SubscribeToBoolChange(IBoolSubscribable source)
+
+        public bool SetBool(bool boolsignal , TableRow row)
         {
-               if(boolSubscribe != null)
-                {
-                boolSubscribe.UnSubscribe(UpdateSignal);
-                }
+            RemovePreviousConnection(row);
+            if (IsWrite)
+                Signal = boolsignal;
 
-            boolSubscribe = source;
-            boolSubscribe.Subscribe(UpdateSignal);
 
-            Signal = boolSubscribe.BoolValue;
-
+            return Signal;
         }
+        public int SetNumber( int number , TableRow row)
+        {
+            RemovePreviousConnection(row);
+            if (IsWrite) Number = number;
 
-        // Method that will handle the changes from the subscribed events
-        private void UpdateSignal(bool newValue)
-        {
-            Debug.Log("A1 updated to: " + newValue);
-            Signal = newValue;
-         
+            return Number;
         }
-        //TODO add one for int
-        public void SubscribeToNumberChange(INumberSubscribable source)
+        private void RemovePreviousConnection(TableRow newRow)
         {
-            if (numberSubscribe != null)
+            if(assignedrow != null )
             {
-                numberSubscribe.UnSubscribe(UpdateNumber);
+                if(assignedrow != newRow)
+                    assignedrow.AssignedSignals.Remove(this);
             }
-
-            numberSubscribe = source;
-            numberSubscribe.Subscribe(UpdateNumber);
-
-            Number = numberSubscribe.numberValue;
+          //  Debug.Log("ASsign row here");
+            assignedrow = newRow;
 
         }
-        private void UpdateNumber(int newValue)
-        {
-            Number = newValue;
-        }
+        //public void SubscribeToBoolChange(IBoolSubscribable source)
+        //{
+        //       if(boolSubscribe != null)
+        //        {
+        //        boolSubscribe.UnSubscribe(UpdateSignal);
+        //        }
+
+        //    boolSubscribe = source;
+        //    boolSubscribe.Subscribe(UpdateSignal);
+
+        //    Signal = boolSubscribe.BoolValue;
+
+        //}
+
+        //// Method that will handle the changes from the subscribed events
+        //private void UpdateSignal(bool newValue)
+        //{
+        //    Debug.Log("A1 updated to: " + newValue);
+        //    Signal = newValue;
+         
+        //}
+        ////TODO add one for int
+        //public void SubscribeToNumberChange(INumberSubscribable source)
+        //{
+        //    if (numberSubscribe != null)
+        //    {
+        //        numberSubscribe.UnSubscribe(UpdateNumber);
+        //    }
+
+        //    numberSubscribe = source;
+        //    numberSubscribe.Subscribe(UpdateNumber);
+
+        //    Number = numberSubscribe.numberValue;
+
+        //}
+        //private void UpdateNumber(int newValue)
+        //{
+        //    Number = newValue;
+        //}
 
     }
 }

@@ -5,44 +5,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class BoolRow : TableRow,IBoolSubscribable
+public class BoolRow : TableRow
 {
     public Toggle togglebool;
-    private bool _value;
+ //   public bool isWrite;
+    public bool Value;
 
-    //public bool FValue => Value;
-    public Action<bool> OnValueChanged;
-    public bool Value
-    {
-        get { return _value; }
-        set
-        {
-            if(value != _value)
-            {
-                _value = value;
-                OnValueChanged?.Invoke(_value);
-                Debug.Log("bool changed");
-            }
-            
-        }
-    }
-
-    public bool BoolValue => Value;
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+        if (AssignedSignals.Count != 0)
+        {
+            foreach (PLCComponent.SignalData signal in AssignedSignals)
+            {
+                togglebool.isOn = signal.SetBool(togglebool.isOn, this); 
+            }
+        }
         Value = togglebool.isOn;
     }
 
-    public void Subscribe(Action<bool> callback)
-    {
-        OnValueChanged += callback;
-    }
-
-    public void UnSubscribe(Action<bool> callback)
-    {
-        OnValueChanged -= callback;
-    }
 }

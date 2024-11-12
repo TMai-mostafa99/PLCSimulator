@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Basic_Coil : Coil
 {
-    // Start is called before the first frame update
-    void Start()
+ 
+    protected override void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        base.Update();
         SignalOut = RungSignal;
         if (SignalOut.Signal)
         {

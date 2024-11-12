@@ -5,9 +5,10 @@ using UnityEngine;
 public class ADD_func : MathFunc
 {
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (EN && !previousSignal) OUT = Num1 + Num2;
+        base.Update();
+        if (EN.Signal && !previousSignal) OUT.Number = Num1.Number + Num2.Number;
         previousSignal = SignalIn.Signal;
     }
 }

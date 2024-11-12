@@ -17,6 +17,7 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public UnityAction Dropped;
     private Transform MenuTransform;
+    [SerializeField] private bool dropped = true;
     private void Start()
     {
         MenuTransform = transform.parent;
@@ -93,8 +94,12 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        
-        if(placeholder.transform.parent.tag =="Menu") GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+
+        if (placeholder.transform.parent.tag == "Menu") 
+        {
+            GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            dropped = false;
+        } 
         else
         {
             if(MenuTransform.childCount == 0)
@@ -106,6 +111,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             }
           
         }
+
+        if (dropped) Dropped?.Invoke();
         //if(placeholder.transform.parent == ParentPos)
         //{
         //    GetComponent<RectTransform>().anchoredPosition = Vector3.zero;

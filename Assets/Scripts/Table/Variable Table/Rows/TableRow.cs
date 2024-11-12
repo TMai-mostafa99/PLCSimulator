@@ -11,6 +11,7 @@ public class TableRow : MonoBehaviour
     public VarTypes type;
     public Button Delete;
 
+    public List<PLCComponent.SignalData> AssignedSignals;
     private void Start()
     {
       if(Delete)  Delete.onClick.AddListener(DeleteRow);

@@ -12,10 +12,29 @@ public class CounterRow : TableRow
     public BoolRow Q;
 
     public Action CounterAssigned;
+
+    public List<Counter> AssignedCounters;
+
+    
     private new void Update()
     {
         base.Update();
         ToggleCounterRows(toggleRows.isOn);
+
+
+       if(AssignedCounters.Count > 0)
+        {
+            foreach(Counter counter in AssignedCounters)
+            {
+                PV.AssignedSignals.Add(counter.PV);
+                CV.AssignedSignals.Add(counter.CV);
+                CU.AssignedSignals.Add(counter.CU);
+                R.AssignedSignals.Add(counter.CU);
+                Q.AssignedSignals.Add(counter.Q);
+
+            }
+       
+        }
     }
 
     private void ToggleCounterRows(bool state)

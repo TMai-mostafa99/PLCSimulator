@@ -11,19 +11,19 @@ public class PanelsManager : MonoBehaviour
     void Start()
     {
         foreach (Panel pnl in Panels)
-            pnl.btn.onClick.AddListener(() => { OpenPanel(pnl.PanelGo); });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        {
+            GameObject PanelGO = pnl.PanelGo;
+            pnl.btn.onClick.AddListener(() => { OpenPanel(PanelGO); });
+        }
+            
     }
     public void OpenPanel(GameObject panel)
     {
+       
         foreach(Panel pnl in Panels)
         {
-            if(pnl.PanelGo = panel)
+          //  Debug.Log("PANEL NAME: " + panel.name + " GO : " + pnl.PanelGo.name);
+            if(pnl.PanelGo == panel)
             {
                 pnl.PanelGo.SetActive(true);
             }

@@ -31,23 +31,18 @@ public class AssignRow : MonoBehaviour
         {
             case VarTypes.BOOL:
                 BoolRow row = (BoolRow) VarTablemanager.instance.Rows.Find(row => row.VarName == dropDown.options[indx].text);
-                 Signal.SubscribeToBoolChange(row);
+                row.AssignedSignals.Add(Signal);
                 //prevDropDownVal = indx;
                 break;
 
             case VarTypes.NUMBER:
                 NumberRow rowNum = (NumberRow)VarTablemanager.instance.Rows.Find(row => row.VarName == dropDown.options[indx].text);
-                Signal.SubscribeToNumberChange(rowNum);
+                rowNum.AssignedSignals.Add(Signal);
                 //dropDown.value = indx;
                 break;
             case VarTypes.COUNTER:
                 CounterRow counterRow = (CounterRow)VarTablemanager.instance.Rows.Find(row => row.VarName == dropDown.options[indx].text);
-                Counter CounterComponent = (Counter) component;
-                CounterComponent.PV.SubscribeToNumberChange(counterRow.PV);
-                CounterComponent.CV.SubscribeToNumberChange(counterRow.CV);
-                CounterComponent.CU.SubscribeToBoolChange(counterRow.CU);
-                CounterComponent.R.SubscribeToBoolChange(counterRow.R);
-                CounterComponent.Q.SubscribeToBoolChange(counterRow.Q);
+                counterRow.AssignedCounters.Add((Counter)component);
                 break;
         }
      

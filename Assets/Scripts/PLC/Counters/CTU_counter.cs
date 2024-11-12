@@ -6,6 +6,7 @@ public class CTU_counter : Counter
 {
     //--------------------------------//
     private bool previousSignalIn;
+    public bool isSet; 
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -22,6 +23,11 @@ public class CTU_counter : Counter
         if (CU.Signal && !previousSignalIn) CV.Number++;
 
         previousSignalIn = SignalIn.Signal;
+
+    }
+
+    public void UnSetCTU_counter()
+    {
 
     }
 }

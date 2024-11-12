@@ -36,31 +36,40 @@ public class assignVariable : MonoBehaviour //also singleton
     public void OpenVarAssignPanel(PLCComponent plc)
     {
         PopUpPanel.SetActive(true);
-       // if(fields.Length >0 )   Array.Clear(fields, 0, fields.Length);
         DestroyAllChildren();
-        //Destroy all chidren of parent;
-       // Debug.Log("plc name: " + plc.name);
-        //GetPublicVariables(plc);
         GetPLCdata(plc);
     }
     public void GetPLCdata(PLCComponent plc)
     {
-        foreach(PLCComponent.SignalData signal in plc.Data)
+        if (plc is Counter)
         {
-          //  Debug.Log("NAME SIGNAL : " + signal.SignalName);
-            if (signal.SignalName == "SignalOut" || signal.SignalName == "RungSignal")
-            { //DONT
-            }
-            else
+            GameObject row = Instantiate(AssignRowgGo, VarParent);
+            row.GetComponent<AssignRow>().VarName.text = "Counter Data";
+            List<TMP_Dropdown.OptionData> Counteroptions = GetOptions(VarTypes.COUNTER);
+            row.GetComponent<AssignRow>().dropDown.AddOptions(Counteroptions);
+            PLCComponent.SignalData counterSignal = new PLCComponent.SignalData(VarTypes.COUNTER, "sig", false, 0 , false);
+            row.GetComponent<AssignRow>().Signal = counterSignal;
+            row.GetComponent<AssignRow>().component = plc;
+        }
+        else
+        {
+            foreach (PLCComponent.SignalData signal in plc.Data)
             {
                 GameObject row = Instantiate(AssignRowgGo, VarParent);
-                row.GetComponent<AssignRow>().VarName.text = signal.SignalName;
+
+                if (plc is Timer) row.GetComponent<AssignRow>().VarName.text = "Timer Data";
+                else
+                    row.GetComponent<AssignRow>().VarName.text = signal.SignalName;
+
                 List<TMP_Dropdown.OptionData> options = GetOptions(signal.Type);
                 row.GetComponent<AssignRow>().dropDown.AddOptions(options);
                 row.GetComponent<AssignRow>().Signal = signal;
                 row.GetComponent<AssignRow>().component = plc;
+             
             }
         }
+        
+
     }
     public void CloseVarAssignPanel()
     {
