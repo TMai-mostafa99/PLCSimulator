@@ -11,7 +11,6 @@ public class assignVariable : MonoBehaviour //also singleton
 {
     public UnityAction<PLCComponent> OpenPanel;
   //  public PLCComponent component;
-    public FieldInfo[] fields;
     public Transform VarParent;
     public GameObject AssignRowgGo;
     public GameObject PopUpPanel;
@@ -20,6 +19,7 @@ public class assignVariable : MonoBehaviour //also singleton
     private void Awake()
     {
         instance = this;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -41,13 +41,26 @@ public class assignVariable : MonoBehaviour //also singleton
     }
     public void GetPLCdata(PLCComponent plc)
     {
-        if (plc is Counter)
+        if (plc is Counter )
         {
+            Counter CounterPLC =(Counter) plc;
             GameObject row = Instantiate(AssignRowgGo, VarParent);
             row.GetComponent<AssignRow>().VarName.text = "Counter Data";
             List<TMP_Dropdown.OptionData> Counteroptions = GetOptions(VarTypes.COUNTER);
             row.GetComponent<AssignRow>().dropDown.AddOptions(Counteroptions);
             PLCComponent.SignalData counterSignal = new PLCComponent.SignalData(VarTypes.COUNTER, "sig", false, 0 , false);
+            row.GetComponent<AssignRow>().Signal = counterSignal;
+            row.GetComponent<AssignRow>().component = plc;
+            
+
+        }
+        else if (plc is Timer)
+        {
+            GameObject row = Instantiate(AssignRowgGo, VarParent);
+            row.GetComponent<AssignRow>().VarName.text = "Timer Data";
+            List<TMP_Dropdown.OptionData> Counteroptions = GetOptions(VarTypes.TIMER);
+            row.GetComponent<AssignRow>().dropDown.AddOptions(Counteroptions);
+            PLCComponent.SignalData counterSignal = new PLCComponent.SignalData(VarTypes.TIMER, "sig", false, 0, false);
             row.GetComponent<AssignRow>().Signal = counterSignal;
             row.GetComponent<AssignRow>().component = plc;
         }

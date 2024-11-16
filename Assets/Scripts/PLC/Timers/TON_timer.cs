@@ -1,24 +1,51 @@
+using System;
 using UnityEngine;
 
 public class TON_timer : Timer
 {
 
+    
+    //TODO: RESET ON SIGNAL CHANGE
+    protected override void Start()
+    {
+        base.Start();
+
+    }
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        if (IN) // timer started
+        // Detect the transition from False to True
+        if (!previousSignal  && IN.Signal)
         {
-            ET += (int)Time.deltaTime;
+            startTime = Time.time;
+            timerRunning = true;
+        }
+        if (timerRunning)
+        {
+            ET.Number = (int)(Time.time - startTime);
 
-            if(ET >= PT)
+            if(ET.Number >= PT.Number)
             {
-                Q = SignalOut = true;
+                Q.Signal = SignalOut = true;
+                timerRunning = false;
             }
             else
             {
-                Q = SignalOut = false;
+                Q.Signal = SignalOut = false;
             }
         }
+        else
+        {
+            // If the timer is not running and input is True, keep the output ON
+            if (!IN.Signal)
+            {
+                Q.Signal = SignalOut = false;
+                ET.Number = 0;
+            }
+        }
+
+        previousSignal = IN.Signal;
+      
     }
 }

@@ -8,12 +8,13 @@ public class VarTablemanager : MonoBehaviour //Mark as singleton
 {
     public TMP_InputField Name;
     public TMP_Dropdown dropdown;
-   // public Button AddBtn;
+    public Button AddBtn;
     public List<TableRow> Rows;
     public Transform TableParent;
     public GameObject BoolRow;
     public GameObject NumberRow;
     public GameObject CounterRow;
+    public GameObject TimerRow;
     public static VarTablemanager instance;
 
     private void Awake()
@@ -31,6 +32,19 @@ public class VarTablemanager : MonoBehaviour //Mark as singleton
     {
         //TODO :
         //ClosePopUp ADD BUTTON IF TEXT IS EMPTY
+        if (Name.text == string.Empty)
+        {
+            AddBtn.interactable = false;
+        }
+        else
+        {
+            AddBtn.interactable = true;
+        }
+       Rows.ForEach(row =>
+            {
+                if (row.VarName == Name.text) AddBtn.interactable = false;
+                else AddBtn.interactable = true;
+            });
     }
 
     public void AddRow()
@@ -57,6 +71,17 @@ public class VarTablemanager : MonoBehaviour //Mark as singleton
                 ReparentChildrenAndDeleteParent(CounterRowParent.transform);
                 CounterRowEle.VarName = Name.text;
                 Rows.Add(CounterRowEle);
+                CounterRowEle.AddRestToVarTable(CounterRowEle.VarName);
+                break;
+
+            case 3:
+                GameObject TimerRowParent = Instantiate(TimerRow, TableParent); //counter row
+                TimerRow TimerRowEle = TimerRowParent.transform.GetChild(0).GetComponent<TimerRow>();
+                ReparentChildrenAndDeleteParent(TimerRowParent.transform);
+                TimerRowEle.VarName = Name.text;
+
+                Rows.Add(TimerRowEle);
+                TimerRowEle.AddRestToVarTable(TimerRowEle.VarName);
                 break;
         }
     }

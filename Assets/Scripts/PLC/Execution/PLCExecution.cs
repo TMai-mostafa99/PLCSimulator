@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PLCExecution : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PLCExecution : MonoBehaviour
     public GameObject Parent;
     public List<RungComponent> MainRungs;
     public bool isRunning;
+    public Sprite pause;
+    public Sprite start;
+    public Image RunButtonImage;
     void Start()
     {
         
@@ -28,14 +32,24 @@ public class PLCExecution : MonoBehaviour
     }
     public void Run()
     {
-        foreach (Transform child in Parent.transform)
+        if (!isRunning)
         {
-            RungComponent comp = child.GetComponent<RungComponent>();
-            comp.SetInitialSignal(true);
-            MainRungs.Add(comp);
-         
+            foreach (Transform child in Parent.transform)
+            {
+                RungComponent comp = child.GetComponent<RungComponent>();
+                comp.SetInitialSignal(true);
+                if (!MainRungs.Contains(comp)) MainRungs.Add(comp);
+
+            }
+            isRunning = true;
+            RunButtonImage.sprite = pause;
         }
-        isRunning = true;
+        else
+        {
+            isRunning = false;
+            RunButtonImage.sprite = start;
+        }
+
 
     }
     private void GetRungElements(Transform parentTransform)

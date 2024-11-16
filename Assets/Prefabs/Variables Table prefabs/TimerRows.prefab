@@ -66,9 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'IN
-
-'
+  m_text: "\tIN\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -379,7 +377,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2773111840058564730
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +508,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2773111840235495630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -889,7 +887,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2773111841202672297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -1090,6 +1088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2773111841427770738}
   - component: {fileID: 2773111841427770737}
+  - component: {fileID: 854091231717988475}
   m_Layer: 5
   m_Name: IN
   m_TagString: Untagged
@@ -1147,6 +1146,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &854091231717988475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773111841427770739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90581572ab35b654fb7b9cea8dcfc0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 2773111839645473845}
+  VarName: '            IN'
+  type: 1
+  Delete: {fileID: 0}
+  AssignedSignals: []
+  togglebool: {fileID: 2773111840015793545}
+  Value: 0
 --- !u!1 &3904822325971411471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3904822327465709491}
   - component: {fileID: 3904822327465709488}
+  - component: {fileID: 5907944980259347603}
   m_Layer: 5
   m_Name: TimerRow
   m_TagString: Untagged
@@ -2080,6 +2099,30 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5907944980259347603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904822327465709490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197cfa17e3840e249bdbf0840fb51eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 3904822326488686324}
+  VarName: 
+  type: 3
+  Delete: {fileID: 3904822327076999278}
+  AssignedSignals: []
+  toggleRows: {fileID: 3904822326192176968}
+  IN: {fileID: 854091231717988475}
+  R: {fileID: 5901213983832513540}
+  Q: {fileID: 1513271493969291739}
+  PT: {fileID: 1066868637788709654}
+  ET: {fileID: 2866141644019545905}
+  AssignedTimers: []
 --- !u!1 &3904822327680237356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2465,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705931843078008515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2643,7 +2686,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &4705931843435301387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +3006,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705931843609395558}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -3244,6 +3287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705931843797117701}
   - component: {fileID: 4705931843797117700}
+  - component: {fileID: 2866141644019545905}
   m_Layer: 5
   m_Name: ET
   m_TagString: Untagged
@@ -3301,6 +3345,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &2866141644019545905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705931843797117702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27f9abbdefdf4b4fab644d42a4c05df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 4705931845141229356}
+  VarName: '            ET'
+  type: 0
+  Delete: {fileID: 0}
+  AssignedSignals: []
+  input: {fileID: 4705931844410528661}
+  Value: 0
 --- !u!1 &4705931843966521870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4705931843966521869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3714,7 +3777,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: R
+  m_text: "\tR"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -3836,7 +3899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705931844170033537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -4082,6 +4145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705931844335675247}
   - component: {fileID: 4705931844335675246}
+  - component: {fileID: 5901213983832513540}
   m_Layer: 5
   m_Name: R
   m_TagString: Untagged
@@ -4139,6 +4203,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5901213983832513540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705931844335675240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90581572ab35b654fb7b9cea8dcfc0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 4705931844085842569}
+  VarName: '            R'
+  type: 1
+  Delete: {fileID: 0}
+  AssignedSignals: []
+  togglebool: {fileID: 4705931845092315975}
+  Value: 0
 --- !u!1 &4705931844391537092
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4705931844463394206}
   - component: {fileID: 4705931844463394205}
+  - component: {fileID: 1513271493969291739}
   m_Layer: 5
   m_Name: Q
   m_TagString: Untagged
@@ -4535,6 +4619,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1513271493969291739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705931844463394207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90581572ab35b654fb7b9cea8dcfc0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 4705931844821786604}
+  VarName: '            Q'
+  type: 1
+  Delete: {fileID: 0}
+  AssignedSignals: []
+  togglebool: {fileID: 4705931843369525539}
+  Value: 0
 --- !u!1 &4705931844474106537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5316,7 +5419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Q
+  m_text: "\tQ"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -5470,7 +5573,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705931844914433466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5592,7 +5695,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705931845008797389}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5715,7 +5818,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &4705931845124477543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5858,7 +5961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ET
+  m_text: "\tET"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -6176,7 +6279,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7294067075832018921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -6634,7 +6737,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7294067076456735850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -6681,6 +6784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7294067076555277844}
   - component: {fileID: 7294067076555277847}
+  - component: {fileID: 1066868637788709654}
   m_Layer: 5
   m_Name: PT
   m_TagString: Untagged
@@ -6738,6 +6842,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1066868637788709654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294067076555277845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27f9abbdefdf4b4fab644d42a4c05df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 7294067077318477030}
+  VarName: '            PT'
+  type: 0
+  Delete: {fileID: 0}
+  AssignedSignals: []
+  input: {fileID: 7294067076599090257}
+  Value: 0
 --- !u!1 &7294067076599090263
 GameObject:
   m_ObjectHideFlags: 0
@@ -7245,7 +7368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PT
+  m_text: "\tPT"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Basic_Coil : Coil
 {
+    public TMP_Text AssignedVar;
     protected override void Start()
     {
         base.Start();
@@ -16,6 +18,12 @@ public class Basic_Coil : Coil
         if (SignalOut)
         {
             Debug.Log("Signal out is true");
+        }
+        if (AssignedVar != null)
+        {
+            if (addedToRung) AssignedVar.gameObject.SetActive(true);
+            else AssignedVar.gameObject.SetActive(false);
+            AssignedVar.text = Output.assignedrow ? Output.assignedrow.VarName : "???";
         }
     }
 }

@@ -8,6 +8,6 @@ public class EQUAL_comp : Compare
     protected override void Update()
     {
         base.Update();
-        SignalOut = NUM1 == NUM2 ? true : false;
+        SignalOut = (NUM1.Number == NUM2.Number) && RungSignal ? true : false;
     }
 }
