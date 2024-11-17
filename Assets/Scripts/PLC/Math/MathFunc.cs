@@ -1,3 +1,5 @@
+using TMPro;
+
 public class MathFunc : PLCComponent
 {
 
@@ -10,7 +12,8 @@ public class MathFunc : PLCComponent
     public SignalData Num2;
     public SignalData OUT;
 
-
+    public TMP_Text AssignedVar1;
+    public TMP_Text AssignedVar2;
     protected override void Start()
     {
         base.Start();
@@ -30,5 +33,18 @@ public class MathFunc : PLCComponent
         base.Update();
         EN.Signal = SignalIn = RungSignal;
         ENO.Signal = SignalOut = EN.Signal;
+
+        if (AssignedVar1 != null)
+        {
+            if (addedToRung) AssignedVar1.gameObject.SetActive(true);
+            else AssignedVar1.gameObject.SetActive(false);
+            AssignedVar1.text = Num1.assignedrow ? Num1.assignedrow.VarName : "???";
+        }
+        if (AssignedVar2 != null)
+        {
+            if (addedToRung) AssignedVar2.gameObject.SetActive(true);
+            else AssignedVar2.gameObject.SetActive(false);
+            AssignedVar2.text = Num2.assignedrow ? Num2.assignedrow.VarName : "???";
+        }
     }
 }

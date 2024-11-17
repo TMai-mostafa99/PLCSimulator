@@ -13,9 +13,12 @@ public class PLCExecution : MonoBehaviour
     public Sprite pause;
     public Sprite start;
     public Image RunButtonImage;
-    void Start()
+
+    public static PLCExecution instance;
+    private void Awake()
     {
-        
+
+        instance = this;
     }
 
     // Update is called once per frame
@@ -51,6 +54,16 @@ public class PLCExecution : MonoBehaviour
         }
 
 
+    }
+    public void RefreshRungs()
+    {
+        foreach (Transform child in Parent.transform)
+        {
+            RungComponent comp = child.GetComponent<RungComponent>();
+            comp.SetInitialSignal(true);
+            if (!MainRungs.Contains(comp)) MainRungs.Add(comp);
+
+        }
     }
     private void GetRungElements(Transform parentTransform)
     {
