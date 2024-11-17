@@ -109,8 +109,12 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             {
 
                 GameObject newplaceholder = Instantiate(ComponentPrefab, MenuTransform.transform);
-                ComponentPrefab.GetComponent<PLCComponent>().ResetAdding();
-                ComponentPrefab.GetComponent<draggable>().dropped = true;
+                newplaceholder.GetComponent<PLCComponent>().ResetAdding();
+                newplaceholder.GetComponent<draggable>().dropped = true;
+                newplaceholder.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
+                newplaceholder.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
+                newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+         
                 newplaceholder.name = gameObject.name;  
                 newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
                 newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;

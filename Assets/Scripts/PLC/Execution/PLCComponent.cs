@@ -37,7 +37,7 @@ public class PLCComponent : SimulationComponent , IPointerClickHandler
     {
         if (graphic)
         {
-            if (SignalOut) graphic.color = Color.green;
+            if (SignalOut && PLCExecution.instance.isRunning) graphic.color = Color.green;
             else graphic.color = Color.black;
         }
        
