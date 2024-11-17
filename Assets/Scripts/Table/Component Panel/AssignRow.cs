@@ -45,6 +45,7 @@ public class AssignRow : MonoBehaviour
                 if (!timerRow.AssignedTimers.Contains((Timer)component))
                 {
                     Timer currComponent = (Timer)component;
+                    currComponent.Title.SignalName = dropDown.options[indx].text;
                     timerRow.AssignedTimers.Add((Timer)component);
                     timerRow.UpdateAssignedTimersList();
                 }

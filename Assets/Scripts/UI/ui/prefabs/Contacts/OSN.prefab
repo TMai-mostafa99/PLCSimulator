@@ -215,7 +215,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387268736148620095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.2}
+  m_LocalPosition: {x: 0, y: 0, z: -2.1717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,8 +224,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 1.2158, y: -17.92302}
+  m_SizeDelta: {x: 52.1654, y: 12.7309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1897684267673909383
 CanvasRenderer:
@@ -902,6 +902,7 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   placeholderParent: {fileID: 0}
   org: {fileID: 0}
+  ComponentPrefab: {fileID: 3008252418567380066}
   dropped: 1
 --- !u!114 &4477798583081570486
 MonoBehaviour:
@@ -1040,6 +1041,7 @@ MonoBehaviour:
     IsWrite: 0
     assignedrow: {fileID: 0}
   graphic: {fileID: 1153303760358996049}
+  instance: {fileID: 0}
   AssignedVar: {fileID: 5955816512892353876}
   Input:
     Type: 0

@@ -789,6 +789,8 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   placeholderParent: {fileID: 0}
   org: {fileID: 0}
+  ComponentPrefab: {fileID: 5399836054899165396}
+  dropped: 1
 --- !u!114 &5399836054899165392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,27 +903,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8806af5c78615f545b557c70de3ec0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RungSignal:
-    Type: 1
-    SignalName: RungSignal
-    Signal: 0
-    Number: 0
-    IsWrite: 0
-    assignedrow: {fileID: 0}
-  SignalIn:
-    Type: 1
-    SignalName: SignalIn
-    Signal: 0
-    Number: 0
-    IsWrite: 1
-    assignedrow: {fileID: 0}
-  SignalOut:
-    Type: 1
-    SignalName: SignalOut
-    Signal: 0
-    Number: 0
-    IsWrite: 0
-    assignedrow: {fileID: 0}
+  RungSignal: 0
+  SignalIn: 0
+  SignalOut: 0
+  addedToRung: 0
+  draggable: {fileID: 0}
   Data:
   - Type: 1
     SignalName: RungSignal
@@ -942,11 +928,41 @@ MonoBehaviour:
     IsWrite: 0
     assignedrow: {fileID: 0}
   graphic: {fileID: 0}
-  EN: 0
-  ENO: 0
-  Num1: 0
-  Num2: 0
-  OUT: 0
+  EN:
+    Type: 0
+    SignalName: 
+    Signal: 0
+    Number: 0
+    IsWrite: 0
+    assignedrow: {fileID: 0}
+  ENO:
+    Type: 0
+    SignalName: 
+    Signal: 0
+    Number: 0
+    IsWrite: 0
+    assignedrow: {fileID: 0}
+  Num1:
+    Type: 0
+    SignalName: 
+    Signal: 0
+    Number: 0
+    IsWrite: 0
+    assignedrow: {fileID: 0}
+  Num2:
+    Type: 0
+    SignalName: 
+    Signal: 0
+    Number: 0
+    IsWrite: 0
+    assignedrow: {fileID: 0}
+  OUT:
+    Type: 0
+    SignalName: 
+    Signal: 0
+    Number: 0
+    IsWrite: 0
+    assignedrow: {fileID: 0}
 --- !u!1 &5399836055769467328
 GameObject:
   m_ObjectHideFlags: 0

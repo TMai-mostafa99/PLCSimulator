@@ -768,6 +768,7 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   placeholderParent: {fileID: 0}
   org: {fileID: 0}
+  ComponentPrefab: {fileID: 3008252418567380066}
   dropped: 1
 --- !u!114 &4477798583081570486
 MonoBehaviour:

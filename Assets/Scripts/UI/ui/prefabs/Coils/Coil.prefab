@@ -1060,6 +1060,7 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   placeholderParent: {fileID: 0}
   org: {fileID: 0}
+  ComponentPrefab: {fileID: 6054711715584237180}
   dropped: 1
 --- !u!114 &4872203810731414184
 MonoBehaviour:
@@ -1152,10 +1153,10 @@ MonoBehaviour:
         - m_Target: {fileID: 6266609650135829346}
           m_TargetAssemblyTypeName: PLCComponent, Assembly-CSharp
           m_MethodName: AssignPLCcomponent
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 6266609650135829346}
+            m_ObjectArgumentAssemblyTypeName: PLCComponent, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1198,6 +1199,7 @@ MonoBehaviour:
     IsWrite: 0
     assignedrow: {fileID: 0}
   graphic: {fileID: 0}
+  instance: {fileID: 0}
   Output:
     Type: 0
     SignalName: 
@@ -1205,7 +1207,7 @@ MonoBehaviour:
     Number: 0
     IsWrite: 0
     assignedrow: {fileID: 0}
-  AssignedVar: {fileID: 4803806690040567721}
+  AssignedVar: {fileID: 307400091682824291}
 --- !u!1 &6516753079139682710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,7 +1784,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8469863650111376954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.7}
+  m_LocalPosition: {x: 0, y: 0, z: -1.638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1791,8 +1793,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12.3}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 1.1051, y: -11.4741}
+  m_SizeDelta: {x: 56.6326, y: 15.9984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3612884761320424428
 CanvasRenderer:

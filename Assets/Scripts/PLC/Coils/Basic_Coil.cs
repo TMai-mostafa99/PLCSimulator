@@ -15,10 +15,6 @@ public class Basic_Coil : Coil
         base.Update();
         SignalOut = RungSignal;
         Output.Signal = SignalOut; // can't be changed from outside but can only be viewed
-        if (SignalOut)
-        {
-            Debug.Log("Signal out is true");
-        }
         if (AssignedVar != null)
         {
             if (addedToRung) AssignedVar.gameObject.SetActive(true);

@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 33}
-  m_SizeDelta: {x: 68.2159, y: 21.1542}
+  m_AnchoredPosition: {x: -0.27, y: 33}
+  m_SizeDelta: {x: 48.5727, y: 21.1542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6124897683453552804
 CanvasRenderer:
@@ -925,6 +925,7 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   placeholderParent: {fileID: 0}
   org: {fileID: 0}
+  ComponentPrefab: {fileID: 5399836054899165396}
   dropped: 1
 --- !u!114 &5399836054899165392
 MonoBehaviour:
@@ -1063,6 +1064,7 @@ MonoBehaviour:
     IsWrite: 0
     assignedrow: {fileID: 0}
   graphic: {fileID: 0}
+  instance: {fileID: 0}
   Title:
     Type: 0
     SignalName: 

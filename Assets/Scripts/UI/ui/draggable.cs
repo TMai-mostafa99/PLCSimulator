@@ -17,6 +17,7 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public UnityAction Dropped;
     private Transform MenuTransform;
+    [SerializeField] private GameObject ComponentPrefab;
     [SerializeField] private bool dropped = true;
     private void Start()
     {
@@ -85,15 +86,16 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        this.transform.SetParent(parentToReturnTo);
+        this.transform.SetParent(placeholderParent);
 
-        if (placeholderParent == GameObject.FindGameObjectWithTag("Panel out").transform )
-        { this.transform.SetParent(org);  }
+        //if (placeholderParent == GameObject.FindGameObjectWithTag("Panel out").transform ) //no panel out for now
+        //{ this.transform.SetParent(org);  }
 
 
-        this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+
+
+        
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
 
         if (placeholder.transform.parent.tag == "Menu") 
         {
@@ -102,9 +104,13 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         } 
         else
         {
-            if(MenuTransform.childCount == 0)
+            this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+            if (MenuTransform.childCount == 0)
             {
-                GameObject newplaceholder = Instantiate(gameObject, MenuTransform.transform);
+
+                GameObject newplaceholder = Instantiate(ComponentPrefab, MenuTransform.transform);
+                ComponentPrefab.GetComponent<PLCComponent>().ResetAdding();
+                ComponentPrefab.GetComponent<draggable>().dropped = true;
                 newplaceholder.name = gameObject.name;  
                 newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
                 newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -113,31 +119,8 @@ public class draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         if (dropped) Dropped?.Invoke();
-        //if(placeholder.transform.parent == ParentPos)
-        //{
-        //    GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        //}
-        //else
-        //{
-
-        //    GameObject newplaceholder = Instantiate(gameObject, ParentPos.transform);
-        //    newplaceholder.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        //    newplaceholder.GetComponent<RectTransform>().localScale = Vector3.one;
-
-        //    //
-        //    //ParentPos = placeholder.transform.parent;
-        //    Dropped?.Invoke();
-        //}
+        
         Destroy(placeholder);
-
-        Destroy(GameObject.Find("Canvas/menu/Basic/Panel 1(Clone)"));
-        Destroy(GameObject.Find("Canvas/menu/Timers & Counters/Panel 2(Clone)"));
-        Destroy(GameObject.Find("Canvas/menu/Bit/Panel 3(Clone)"));
-        Destroy(GameObject.Find("Canvas/menu/Compare/Panel 4(Clone)"));
-        Destroy(GameObject.Find("Canvas/menu/Math/Panel 5(Clone)"));
-        Destroy(GameObject.Find("Canvas/menu/simulate/Panel 6(Clone)"));
-
-
     }
     void OnTriggerEnter2D(Collider2D other)
     {

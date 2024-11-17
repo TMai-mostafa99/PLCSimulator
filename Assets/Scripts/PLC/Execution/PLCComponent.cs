@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-public class PLCComponent : SimulationComponent
+using UnityEngine.EventSystems;
+
+public class PLCComponent : SimulationComponent , IPointerClickHandler
 {
     //public bool RungSignal;
     //public bool SignalIn;
@@ -20,15 +22,15 @@ public class PLCComponent : SimulationComponent
     public List<SignalData> Data;
 
     public Image graphic;
+    public PLCComponent instance;
     protected void Awake()
     {
         Data.Clear();
+        instance = this;
     }
     protected virtual void Start()
     {
-        Debug.Log("HERE");
         draggable = GetComponent<draggable>();
-        Debug.Log("DRAGABALE: " + draggable);
         draggable.Dropped += DroppedToRung;
     }
     protected virtual void Update()
@@ -44,19 +46,31 @@ public class PLCComponent : SimulationComponent
     {
         addedToRung = true;
     }
-
-    public void AssignPLCcomponent()
+    public void ResetAdding() { addedToRung = false; }
+    //public void AssignPLCcomponent(PLCComponent comp)
+    //{
+    //    if (addedToRung)
+    //    {
+    //        if (assignVariable.instance == null) return;
+    //        Debug.Log("PLC Original: " + gameObject.name);
+    //        //assignVariable.instance.OpenPanel.Invoke(this);
+    //        assignVariable.instance.OpenVarAssignPanel(comp);
+    //    }
+           
+    //}
+    public void OnPointerClick(PointerEventData eventData)
     {
+        if (assignVariable.instance == null) return;
         if (addedToRung)
         {
             if (assignVariable.instance == null) return;
-            Debug.Log("HEERE");
-            
-            assignVariable.instance.OpenPanel.Invoke(this);
+            Debug.Log("PLC Original: " + gameObject.name);
+            //assignVariable.instance.OpenPanel.Invoke(this);
+            assignVariable.instance.OpenVarAssignPanel(instance);
         }
-           
-    }
 
+
+    }
     [Serializable]
     public class SignalData
     {

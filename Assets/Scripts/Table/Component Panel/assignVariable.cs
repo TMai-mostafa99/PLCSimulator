@@ -35,6 +35,7 @@ public class assignVariable : MonoBehaviour //also singleton
     }
     public void OpenVarAssignPanel(PLCComponent plc)
     {
+        Debug.Log("PLC: " + plc.gameObject.name);
         PopUpPanel.SetActive(true);
         DestroyAllChildren();
         GetPLCdata(plc);

@@ -7,7 +7,7 @@ public class dropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 {
 
 	public int length = 0;
-	static int allowedLenght = 7;
+	static int allowedLenght = 10;
 	
     public void OnPointerEnter(PointerEventData eventData)
 	{

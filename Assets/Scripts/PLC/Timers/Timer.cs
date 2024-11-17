@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Timer : PLCComponent
 {
-    
+    public SignalData Title;
     //Boolrans
     public SignalData IN;
     public SignalData Q;
@@ -18,6 +19,8 @@ public class Timer : PLCComponent
     protected float startTime;
     protected bool  previousSignal;
     protected bool timerRunning;
+
+    public TMP_Text AssignedVar1;
     protected override void Start()
     {
         base.Start();
@@ -29,6 +32,7 @@ public class Timer : PLCComponent
     }
     public void Init()
     {
+        Title = new SignalData(VarTypes.TIMER, "???", false, 0, false);
         IN = new SignalData(VarTypes.BOOL,"IN", false, 0, false);
         Q = new SignalData(VarTypes.BOOL,"Q", false, 0, false);
         R = new SignalData(VarTypes.BOOL, "R", false, 0, true);
@@ -72,5 +76,12 @@ public class Timer : PLCComponent
             StartedNow = false;
         
         } //reset bit
+
+        if (AssignedVar1 != null)
+        {
+            if (addedToRung) AssignedVar1.gameObject.SetActive(true);
+            else AssignedVar1.gameObject.SetActive(false);
+            AssignedVar1.text = Title.SignalName;
+        }
     }
 }
